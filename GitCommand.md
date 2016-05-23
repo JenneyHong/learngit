@@ -21,7 +21,7 @@ $ git config --global user.email "email@example.com"
 
 ##3. 创建git 仓库（repository)
 
-  + 创建一个空目录，用来存放仓库
++ 创建一个空目录，用来存放仓库
 
 ```
 $ mkdir learngit
@@ -30,7 +30,7 @@ $ pwd
 /User/michael/learngit
 ```
 
-  + 通过`git init`这个命令将目录变成git可以管理的仓库
++ 通过`git init`这个命令将目录变成git可以管理的仓库
 
 ```
 $ git init
@@ -61,6 +61,25 @@ Initialized empty Git repository in /Users/michael/learngit/.git/
   添加文件到仓库中，一共需要两步：
   + 第一步，添加文件 `git add <file>`
   + 第二步，上交文件 `git commit`.
+
+##5. 修改文件
+  修改readme.txt的内容：
+
+> Git is a distributed version control system.
+> Git is free software.
+
+修改之后，使用`git status`命令来查看git的状态。`git status`会显示有文件被修改了。
+
+添加修改的文件：
+
+> git add readme.txt
+> git diff       //查看文件修改的情况
+
+重新上传到仓库中：
+
+> git commit -m "add distributed"
+
+
 
 
 
