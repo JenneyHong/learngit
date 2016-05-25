@@ -92,9 +92,63 @@ $ git add readme.txt
 ```
 
 ##6. 版本回退
-+ `HEAD` 指向版本是当前版本。穿梭版本可以使用指令`git reset --hard commid_id
++ `HEAD` 指向版本是当前版本。穿梭版本可以使用指令`git reset --hard commid_id`
 + 穿梭前，用`git log`可以查看提交历史，以便确认回退到哪个版本
 + 重返未来，用`git reflog`查看命令历史，以便确认恢复到哪个版本
+
+##7. 撤销、删除文件
++ 只在工作区的修改： 可以通过指令 `git checkout -- filename` 撤销修改 ，或者直接手工修改。
++ 已在暂存区更新的修改： 需要退回到上一步，即回退到工作区中，使用指令`git reset HEAD filename`; 
+  此时再对回到工作区的文件进行修改。
++ 如果提交到了版本库，那么就需要通过版本回退撤销修改，具体参考第6项。
+
+另外，如果提交到了远程仓库，那就没救了……
+
+##8. 远程仓库的创建与使用
++ 注册GitHub帐号。（帐号和邮箱地址可以跟本地的不同）
++ 创建SSH Key 
+  先看看`/root/.ssh/`下有没有`id_rsa`和`id_rsa.pub`这两个文件，如果有说明已经建立了SSH Key。
+  
+```
+$ ssh-keygen -t rsa -C "yourmail@example.com"
+```
+  建立成功的话，会在`/root/.ssh/` 下看到`id_rsa`和`id_rsa.pub`这两个文件，其中`id_rsa`是私钥，不能泄漏出去，`id_rsa.pub`这个是公钥，可以告诉任何人。
+
++ 登录GitHub, 打开"Account Settings", "SSH Keys"页面； 在"Add SSH Key"上填上任何Title, 在Key文本框里面粘帖`id_rsa.pub`里的内容。最后点击“Add Key“，完成。
+
++ 在GitHub上创建一个仓库"Create a new repo"，在Repository name 填入`learngit`，其他的默认。点击"Create repository" 创建完毕。
+  此时在GitHub上建立的learngit仓库是一个空仓库。需要将本地仓库关联上远程仓库
+
++ 本地仓库关联远程仓库：
+
+```
+$ git remote add origin git@github.com:JenneyHong/learngit
+```
++ 将本地的所有内容推送到远程库中
+
+```
+$ git push -u origin master
+```
+
+之后的每次修改，使用指令`git push origin master`推送到远程仓库中
+
+##9. 分支管理
++ 查看分支： `git branch`
++ 创建分支： `git branch <name>
++ 切换分支： `git checkout <name>
++ 创建 & 切换分支: `git checkout -b <name>
++ 合并分支到当前分支： `git merge <name>
++ 删除分支： git branch -d <name> 
+
+##10. 解决冲突
+  当Master和branch都有新的更新，并且二者的更新不一样时，不能使用快速合并。
+  此时，需要手动修改两者冲突后再提交
+  `git log --graph`可以看到分支合并图
+
+##
+
+
+
 
 
 
