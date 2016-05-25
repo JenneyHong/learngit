@@ -134,18 +134,59 @@ $ git push -u origin master
 
 ##9. 分支管理
 + 查看分支： `git branch`
-+ 创建分支： `git branch <name>
-+ 切换分支： `git checkout <name>
-+ 创建 & 切换分支: `git checkout -b <name>
-+ 合并分支到当前分支： `git merge <name>
-+ 删除分支： git branch -d <name> 
++ 创建分支： `git branch <name>`
++ 切换分支： `git checkout <name>`
++ 创建 & 切换分支: `git checkout -b <name>`
++ 合并分支到当前分支： `git merge <name>`  （这是快速合并)
++ 删除分支： `git branch -d <name>` 
++ 普通合并： `git merge --no-ff -m "write a description" <name>`
 
 ##10. 解决冲突
   当Master和branch都有新的更新，并且二者的更新不一样时，不能使用快速合并。
   此时，需要手动修改两者冲突后再提交
   `git log --graph`可以看到分支合并图
 
-##
+##11. 解决Bug
++ 保存当前工作现场： `git stash`
++ 创建Bug分支（哪个分支需要修复就在哪个分支上创建Bug分支）
+```
+$ git checkout master
+Switched to brance 'master'
+Your branch is ahead of 'origin/master' by 6 commits.
+$ git checkout -b issue-101
+Switch to a new branch 'issue-101'
+```
+修改完成后，切换到Master分支，完成合并，并删除`issue-101`分支。
+
++ 查看工作现场的保存： `git stash list`
++ 恢复工作现场： `git stash apply` 恢复但不删除stash内容， `git stash drop`可以删除这些内容；
+  直接使用`git stash pop`恢复的同时删除stash内容。
++ 恢复指定的stash： `git stash apply stash@{0}`
+
+##12.关于多人协作的工作模式：
++ 首先，推送自己的修改： `git push origin branch-name`
++ 推送失败，因为远程分支比本地分支要新，此时尝试用 `git pull`合并
++ 合并出现冲突，解决冲突，再本地提交
++ 解决冲突后，用 `git push origin branch-name`推送成功。
+
+如果 `git pull`提示 “no tracking information" ，说明本地分支没有关联上远程分支，此时使用指令
+`git branch --set-upstream branch-name origin/branch-name` 来解决。
+
++ 查看远程库信息: `git remote -v`
+
+##13. 标签管理
+
+##14. 忽略某些文件
++ 填写`.gitignore`
++ `.gitignore` 放在版本库里
+
+===========end==============
+Git 的学习暂一段落^_^
+
+  
+
+
+
 
 
 
